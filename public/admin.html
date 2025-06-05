@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administration - Menu Restaurant ADMB</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css"> <link rel="stylesheet" href="css/admin-style.css"> <style>
+        /* Styles pour le formulaire de connexion et le masquage */
+        #admin-login-section {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 30px;
+            background: #FFFFFF;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        #admin-login-section h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #1A1A1A; /* Hérité d'admin-style.css mais peut être surchargé si besoin */
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem; /* Assurer la cohérence */
+            border-bottom: none; /* Pas de bordure pour ce h2 spécifique */
+            padding-bottom: 0;
+        }
+        #admin-login-section .form-group {
+            margin-bottom: 20px;
+        }
+        #admin-login-section label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333333;
+        }
+        #admin-login-section input[type="text"],
+        #admin-login-section input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #CCCCCC;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+        }
+         #admin-login-section input[type="text"]:focus,
+         #admin-login-section input[type="password"]:focus {
+            border-color: #333333;
+            box-shadow: 0 0 0 2px rgba(51, 51, 51, 0.2);
+            outline: none;
+         }
+        #admin-login-section button[type="submit"] { /* Cibler le bouton de connexion */
+            width: 100%;
+            padding: 12px;
+            background-color: #333333;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-transform: uppercase; /* Assurer la cohérence avec les autres boutons si désiré */
+        }
+        #admin-login-section button[type="submit"]:hover {
+            background-color: #1A1A1A;
+        }
+        #login-error-message {
+            color: #dc3545; /* Rouge pour erreur */
+            text-align: center;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            display: none; /* Caché par défaut */
+        }
+
+        #admin-content-section {
+            display: none; /* Caché jusqu'à ce que l'utilisateur soit connecté */
+        }
+        #logout-button-container {
+            text-align: right; /* Aligner le bouton à droite */
+            margin-bottom: 20px; /* Espace avant le premier admin-section */
+            padding: 0 30px; /* Aligner avec le padding des .admin-section si admin-main a un padding */
+        }
+         /* S'assurer que le admin-main a le padding si logout-button-container est dedans */
+        main.admin-main {
+            padding-top: 20px; /* Espace pour le bouton déconnexion */
+        }
+        #logout-button {
+            padding: 8px 15px;
+            font-size: 0.9rem;
+            background-color: #6c757d;
+            color: white;
+            border:1px solid #6c757d;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: background-color 0.2s ease;
+        }
+        #logout-button:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Administration du Menu - ADMB</h1>
+        <nav><a href="selection.html" target="_blank">Voir le site</a></nav>
+    </header>
+
+    <main class="admin-main">
+        <section id="admin-login-section">
+            <h2>Connexion Administrateur</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">Nom d'utilisateur :</label>
+                    <input type="text" id="username" name="username" required autocomplete="username">
+                </div>
+                <div class="form-group">
+                    <label for="password">Mot de passe :</label>
+                    <input type="password" id="password" name="password" required autocomplete="current-password">
+                </div>
+                <button type="submit">Se connecter</button>
+                <p id="login-error-message"></p>
+            </form>
+        </section>
+
+        <div id="admin-content-section">
+            <div id="logout-button-container">
+                <button id="logout-button">Déconnexion</button>
+            </div>
+
+            <section class="admin-section">
+                <h2>Gérer les Catégories</h2>
+                <form id="category-form">
+                    <input type="hidden" id="categoryId" name="categoryId">
+                    <div>
+                        <label for="categoryName">Nom de la catégorie:</label>
+                        <input type="text" id="categoryName" name="categoryName" required>
+                    </div>
+                    <div>
+                        <label for="categoryDescription">Description (optionnel):</label>
+                        <textarea id="categoryDescription" name="categoryDescription"></textarea>
+                    </div>
+                    <div>
+                        <label for="categoryType">Type de catégorie:</label>
+                        <select id="categoryType" name="categoryType" required>
+                            <option value="food">Nourriture</option>
+                            <option value="drink">Boisson</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="categoryOrder">Ordre d'affichage:</label>
+                        <input type="number" id="categoryOrder" name="categoryOrder" value="0">
+                    </div>
+                    <button type="submit">Enregistrer Catégorie</button>
+                    <button type="button" id="clearCategoryForm">Nouveau</button>
+                </form>
+                <h3>Liste des Catégories</h3>
+                <ul id="categories-list"></ul>
+            </section>
+
+            
+
+            <section class="admin-section">
+                <h2>Gérer les Plats</h2>
+                <form id="dish-form">
+                     <input type="hidden" id="dishId" name="dishId">
+                     <div>
+                         <label for="dishName">Nom du plat:</label>
+                         <input type="text" id="dishName" name="dishName" required>
+                     </div>
+                     <div>
+                         <label for="dishDescription">Description (optionnel):</label>
+                         <textarea id="dishDescription" name="dishDescription"></textarea>
+                     </div>
+                     <div>
+                         <label for="dishPrice">Prix (€):</label>
+                         <input type="number" id="dishPrice" name="dishPrice" step="0.01" required>
+                     </div>
+                     <div>
+                         <label for="dishCategory">Catégorie:</label>
+                         <select id="dishCategory" name="dishCategory" required>
+                             <option value="">-- Choisir une catégorie --</option>
+                         </select>
+                     </div>
+                     <div>
+                         <label for="dishImageUrl">URL de l'image (optionnel):</label>
+                         <input type="url" id="dishImageUrl" name="dishImageUrl" placeholder="https://example.com/image.jpg">
+                     </div>
+                     <div>
+                         <label for="dishOrder">Ordre d'affichage:</label>
+                         <input type="number" id="dishOrder" name="dishOrder" value="0">
+                     </div>
+                     <div>
+                         <label for="dishIsAvailable">Disponible:</label>
+                         <input type="checkbox" id="dishIsAvailable" name="dishIsAvailable" checked>
+                        
+                     </div>
+                     <button type="submit">Enregistrer Plat</button>
+                     <button type="button" id="clearDishForm">Nouveau</button>
+                </form>
+                <h3>Liste des Plats</h3>
+                <ul id="dishes-list"></ul>
+            </section>
+        </div>
+    </main>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>

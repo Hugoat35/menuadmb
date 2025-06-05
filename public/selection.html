@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue - Restaurant ADMB</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Styles pour selection.html - "Belle Page d'Accueil" */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: 'Open Sans', sans-serif;
+            color: #333333; /* Gris foncé pour le texte par défaut */
+        }
+
+        body.landing-page {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center; /* Centre verticalement le contenu principal */
+            min-height: 100vh; /* Assure que le body prend au moins toute la hauteur de la vue */
+            background: linear-gradient(to bottom, #F0F0F0, #DDDDDD); /* Léger dégradé gris */
+            /* OU pour une image de fond (décommentez et remplacez l'URL): */
+            /*
+            background-image: url('chemin/vers/votre/image-de-fond-subtile.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; // Pour un effet parallax si souhaité
+            */
+            padding: 20px; /* Espace pour éviter que le contenu ne colle aux bords */
+            box-sizing: border-box;
+        }
+
+        .welcome-container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.9); /* Fond blanc légèrement transparent si image de fond */
+                                                        /* Ou simplement #FFFFFF si fond uni */
+            padding: 40px 50px;
+            border-radius: 10px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            max-width: 700px; /* Limite la largeur pour une meilleure lisibilité */
+            width: 100%;
+        }
+
+        .restaurant-name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem; /* Taille augmentée */
+            font-weight: 700;
+            color: #1A1A1A; /* Noir profond */
+            margin-top: 0;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .welcome-message {
+            font-size: 1.2rem;
+            color: #6c757d; /* Gris moyen */
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .choices-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* Une colonne par défaut pour mobile */
+            gap: 25px;
+        }
+
+        .choice-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 20px;
+            background-color: #FFFFFF;
+            border: 1px solid #DDDDDD; /* Bordure grise claire */
+            border-radius: 8px;
+            text-decoration: none;
+            color: #333333; /* Couleur du texte dans la carte */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            min-height: 150px; /* Hauteur minimale pour la carte */
+        }
+
+        .choice-card:hover {
+            transform: translateY(-5px); /* Effet de surélévation */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border-color: #333333; /* Bordure plus foncée au survol */
+        }
+
+        .choice-card h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem; /* Taille du titre de la carte */
+            font-weight: 600;
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: #1A1A1A; /* Titre en noir profond */
+        }
+        /* Icônes (placeholders, vous pouvez utiliser des SVG ou FontAwesome) */
+        .choice-card .icon-placeholder {
+            font-size: 2.5rem; /* Taille de l'icône */
+            margin-bottom: 15px;
+            color: #333333; /* Couleur de l'icône */
+        }
+
+
+        .page-footer {
+            position: absolute; /* Ou 'fixed' si vous voulez qu'il soit toujours visible */
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.9rem;
+            background-color: rgba(26, 26, 26, 0.8); /* Fond sombre semi-transparent si image de fond */
+                                                    /* Ou #1A1A1A si fond uni */
+            color: #E0E0E0; /* Texte clair */
+        }
+        .page-footer p {
+            margin: 0;
+        }
+
+        /* Responsive pour les choix */
+        @media (min-width: 600px) {
+            .choices-grid {
+                grid-template-columns: 1fr 1fr; /* Deux colonnes sur écrans plus larges */
+            }
+            .restaurant-name {
+                font-size: 3.5rem;
+            }
+            .welcome-message {
+                font-size: 1.3rem;
+            }
+             .choice-card h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body class="landing-page">
+
+    <div class="welcome-container">
+        <h1 class="restaurant-name">Restaurant ADMB</h1>
+        <p class="welcome-message">Découvrez nos saveurs authentiques. Faites votre choix pour explorer nos délices.</p>
+
+        <div class="choices-grid">
+            <a href="index.html?type=food" class="choice-card">
+                <div class="icon-placeholder">🍽️</div> 
+                <h2>Nourriture</h2>
+            </a>
+            <a href="index.html?type=drink" class="choice-card">
+                <div class="icon-placeholder">🥤</div>
+                <h2>Boissons</h2>
+            </a>
+        </div>
+    </div>
+
+    <footer class="page-footer">
+        <p>&copy; <span id="currentYear"></span> Restaurant ADMB - Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        // Petit script pour afficher l'année actuelle dans le footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+
+</body>
+</html>

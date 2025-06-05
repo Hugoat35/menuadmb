@@ -1,0 +1,239 @@
+/* public/css/style.css */
+
+/* Réinitialisation de base et polices */
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+    background-color: #F0F0F0; /* Fond principal gris très clair */
+    color: #333333; /* Texte principal gris foncé */
+    line-height: 1.7;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+/* En-tête */
+header {
+    background: #1A1A1A; /* Noir profond / Gris très foncé */
+    color: #FFFFFF;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+header h1 {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+header h1 a { /* Style pour le lien dans h1 */
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+header nav {
+    margin-top: 1rem;
+}
+
+header nav a {
+    color: #E0E0E0; /* Gris clair pour les liens de nav */
+    margin: 0 18px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+header nav a:hover, header nav a.active {
+    color: #FFFFFF; /* Blanc au survol */
+}
+
+/* Contenu Principal (pour index.html) */
+main {
+    padding: 25px;
+    max-width: 960px;
+    margin: 30px auto;
+}
+
+main h2 { /* Titre "Notre Menu" */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    color: #1A1A1A; /* Noir profond */
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+    padding-bottom: 10px;
+}
+/* Ligne décorative sous le titre h2 */
+main h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background-color: #333333; /* Gris foncé */
+}
+
+
+/* Section Catégorie */
+.category {
+    margin-bottom: 45px;
+    background: #FFFFFF; /* Fond blanc pour les cartes */
+    padding: 25px;
+    border-radius: 6px;
+    border: 1px solid #DDDDDD; /* Bordure grise claire */
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+
+.category h3 { /* Nom de la catégorie */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.8rem;
+    color: #1A1A1A;
+    margin-top: 0;
+    margin-bottom: 10px;
+    padding: 10px 0;
+    border-bottom: 2px solid #333333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+
+.category-title-text {
+    flex-grow: 1;
+}
+
+.category-indicator {
+    font-size: 1.2rem;
+    margin-left: 15px;
+    transition: transform 0.3s ease-out;
+    font-weight: normal;
+}
+
+.category h3.active .category-indicator {
+    transform: rotate(90deg);
+}
+
+.category-description {
+    font-style: italic;
+    color: #6c757d; /* Gris moyen */
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+}
+
+/* Liste des Plats */
+.dishes-list {
+    list-style: none;
+    padding: 0;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
+}
+
+.dishes-list.expanded {
+    max-height: 2000px; /* Augmentez si nécessaire pour de longues listes */
+    transition: max-height 1s cubic-bezier(1, 0, 1, 0);
+}
+
+.dish-item {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #E0E0E0;
+}
+
+.dish-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.dish-item .dish-image {
+    flex-shrink: 0;
+    width: 120px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid #DDDDDD;
+}
+
+.dish-info {
+    flex-grow: 1;
+    min-width: 200px;
+}
+
+.dish-info h4 { /* Nom du plat */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+    color: #333333;
+}
+
+.dish-description {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin: 0;
+}
+
+.dish-price {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1A1A1A;
+    white-space: nowrap;
+    padding: 6px 12px;
+    background-color: #F0F0F0;
+    border-radius: 4px;
+    border: 1px solid #DDDDDD;
+}
+
+/* Pied de page (pour index.html) */
+footer {
+    text-align: center;
+    padding: 25px;
+    background: #1A1A1A;
+    color: #E0E0E0;
+    margin-top: 40px;
+    font-size: 0.9rem;
+}
+footer p {
+    margin: 0;
+}
+
+/* Responsive (pour index.html) */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+    main h2 {
+        font-size: 2rem;
+    }
+    .category h3 {
+        font-size: 1.5rem;
+    }
+    .dish-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .dish-item .dish-image {
+        width: 100%;
+        max-width: 200px;
+        height: auto;
+        margin-bottom: 10px;
+    }
+    .dish-price {
+        margin-top: 10px;
+        align-self: flex-start;
+    }
+}
